@@ -12,7 +12,6 @@
 
 </head>
 <body class="container">
-    <table> </table>
     <?php 
     include 'views/search-form.php';
     
@@ -22,7 +21,17 @@
         include 'views/weather.php';
     }
     ?>
-    
+     <table class = 'table'> title 
+         <thead>
+            <tr>
+                <th>Title</th>
+                <th class="text-right">Release Date</th>
+                <th class="text-right">Tickets Sold</th>
+                <th class="text-right">Gross Revenue</th>
+            </tr>
+        </thead>
+         
+     </table>
     
    
 </body>

@@ -1,4 +1,5 @@
 
+drop table if exists movies2014;
 
 create table movies2014 (
 	ID int NOT NULL AUTO_INCREMENT,
