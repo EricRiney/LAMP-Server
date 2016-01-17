@@ -1,4 +1,18 @@
 
+<?php
+$q = $_GET['q'];
+require_once 'connection.php';
+require_once 'models/movie-model.php';
+$con = getConnection();
+$moviemodel = new MeowSearch($con);
+$matches = $moviemodel->search($q);
+
+if (count($matches) == 1) {
+    $zip = $matches[0]['zip'];
+    $url = "http://img.omdbapi.com/?apikey=[$zip]&";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,12 +30,8 @@
     include 'views/search-form.php';
     
     include 'views/matches.php';
-    
-    if (isset($weatherData)) {
-        include 'views/weather.php';
-    }
     ?>
-     <table class = 'table'> title 
+     <table class = 'table'>
          <thead>
             <tr>
                 <th>Title</th>
