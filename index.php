@@ -12,7 +12,7 @@
 
 </head>
 <body class="container">
-    <table>  bort </table>
+    <table> </table>
     <?php 
     include 'views/search-form.php';
     
