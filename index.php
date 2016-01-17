@@ -40,7 +40,14 @@ if (count($matches) == 1) {
                 <th class="text-right">Gross Revenue</th>
             </tr>
         </thead>
-         
+           <ul>
+<?php
+    foreach ($db->query('SELECT * FROM movies2014') as $row) {
+    echo "<li>".$row['title']." - ".$row['released']."</li>";
+
+}
+?>
+</ul>
      </table>
     
    
