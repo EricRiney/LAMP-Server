@@ -7,7 +7,8 @@ class MeowSearch {
     }
     
     public function search($q) {
-        $sql = 'select * from movies2014 where title=?';
+        $sql = 'select title,released,gross,tickets from movies2014';
+        print_r($q);
         $stmt = $this->conn->prepare($sql);
         $success = $stmt->execute(array($q));
         if (!$success) {            

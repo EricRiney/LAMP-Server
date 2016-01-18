@@ -1,18 +1,4 @@
 
-<?php
-$q = $_GET['q'];
-require_once 'connection.php';
-require_once 'models/movie-model.php';
-$con = getConnection();
-$moviemodel = new MeowSearch($con);
-$matches = $moviemodel->search($q);
-
-if (count($matches) == 1) {
-    $zip = $matches[0]['zip'];
-    $url = "http://img.omdbapi.com/?apikey=[$zip]&";
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,16 +8,22 @@ if (count($matches) == 1) {
     <title>Riney</title>
     
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> 
 
 </head>
 <body class="container">
-    <?php 
-    include 'views/search-form.php';
+
+    <h1>Totally Lookup A Movie</h1>
     
-    include 'views/matches.php';
-    ?>
-     <table class = 'table'>
+     <form method="GET" action="" class="form">
+        <input type="search" 
+                name="title" 
+                class="form-control" 
+                value= "<?= htmlspecialchars($_GET['title'], ENT_QUOTES, 'Utf-8') ?>"
+                placeholder="search by title">
+    </form>
+    
+     <table>
          <thead>
             <tr>
                 <th>Title</th>
@@ -40,15 +32,40 @@ if (count($matches) == 1) {
                 <th class="text-right">Gross Revenue</th>
             </tr>
         </thead>
-           <ul>
-<?php
-    foreach ($db->query('SELECT * FROM movies2014') as $row) {
-    echo "<li>".$row['title']." - ".$row['released']."</li>";
+        <tbody>
+      <?php
+      
+      
+      $q = $_GET['title'];
+      
+require_once 'connection.php';
+require_once 'models/movie-model.php';
+$con = getConnection();
+$moviemodel = new MeowSearch($con);
+$matches = $moviemodel->search($q);
 
-}
-?>
-</ul>
-     </table>
+//print_r($q);
+//print_r($matches);
+//if (count($matches) == 1) {
+  //  $zip = $matches[0]['zip'];
+    //$url = "http://img.omdbapi.com/?apikey=[$zip]&";}
+//
+
+
+      foreach($matches as $row):
+    ?>
+    <tr>
+        <td><?= $row['title']?></td>
+        <td><?= $row['released']?></td>
+        <td><?= $row['tickets']?></td>
+        <td><?= $row['gross']?></td>
+    </tr>
+     <?php 
+    endforeach;
+    ?>
+      
+        </tbody>
+    </table>
     
    
 </body>

@@ -1,6 +1,7 @@
-<h1>Movie Stuff</h1>
+
 <ul>
-    <?php 
+    <?php
+    //print_r($matches);
     foreach($matches as $row):
     ?>
     <li>
