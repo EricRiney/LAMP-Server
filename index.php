@@ -36,29 +36,30 @@
       <?php
       
       
-      $q = $_GET['title'];
+
+      
       
 require_once 'connection.php';
 require_once 'models/movie-model.php';
 $con = getConnection();
 $moviemodel = new MeowSearch($con);
-$matches = $moviemodel->search($q);
 
-//print_r($q);
-//print_r($matches);
-//if (count($matches) == 1) {
-  //  $zip = $matches[0]['zip'];
-    //$url = "http://img.omdbapi.com/?apikey=[$zip]&";}
-//
-
-
-      foreach($matches as $row):
+      if($_GET['q']){
+        //$q = $_GET['q'];
+        //$matches = $moviemodel->getDetail($q);
+      }else{
+        $q = $_GET['title'];
+        $matches = $moviemodel->search($q);
+      }
+    
+    //print_r($matches);
+    foreach($matches as $row):
     ?>
     <tr>
-        <td><?= $row['title']?></td>
+        <td><a href="detail.php?q=<?= $row['ID']?>"><?= $row['title']?></td>
         <td><?= $row['released']?></td>
         <td><?= $row['tickets']?></td>
-        <td><?= $row['gross']?></td>
+        <td>$<?= $row['gross']?></td>
     </tr>
      <?php 
     endforeach;
