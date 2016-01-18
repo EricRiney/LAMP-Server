@@ -44,19 +44,18 @@ require_once 'models/movie-model.php';
 $con = getConnection();
 $moviemodel = new MeowSearch($con);
 
-      if($_GET['q']){
+
         //$q = $_GET['q'];
         //$matches = $moviemodel->getDetail($q);
-      }else{
+
         $q = $_GET['title'];
         $matches = $moviemodel->search($q);
-      }
     
     //print_r($matches);
     foreach($matches as $row):
     ?>
     <tr>
-        <td><a href="detail.php?q=<?= $row['ID']?>"><?= $row['title']?></td>
+        <td><a href="views/detail.php?q=<?= $row['ID']?>"><?= $row['title']?></td>
         <td><?= $row['released']?></td>
         <td><?= $row['tickets']?></td>
         <td>$<?= $row['gross']?></td>
