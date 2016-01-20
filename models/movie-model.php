@@ -27,7 +27,7 @@ class MeowSearch {
     }
     
     public function getDetail($g){
-        $sql = "select * from movies2014 where ID = {$g}";
+        $sql = "select * from moviesTable2014 where ID = {$g}";
         //print_r($sql);
         $stmt = $this->conn->query($sql);
         if (!$stmt) {
