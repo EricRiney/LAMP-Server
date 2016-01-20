@@ -1,4 +1,4 @@
-load data LOCAL infile 'data/movies-2014.csv'
+load data infile '~/Downloads/movies-2014.csv'
 INTO TABLE moviesTable2014
 FIELDS TERMINATED BY ','
 optionally enclosed by '"'

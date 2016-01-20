@@ -8,14 +8,18 @@ class MeowSearch {
     
     public function search($q) {
         
-        $sql = 'select ID,title,released,gross,tickets from movies2014';
+        $sql = 'select ID,title,released,gross,tickets from moviesTable2014';
         if($q){
-            $sql = "select title,released,gross,tickets from movies2014 where title like '%{$q}%'";
+            $sql = "select title,released,gross,tickets from moviesTable2014 where title like '%{$q}%'";
         }
+        
+       // $stmt = $this->conn->prepare($sql);
+        //$success = $stmt->execute(array($q,$q));
+
         
         $stmt = $this->conn->query($sql);
         if (!$stmt) {
-            var_dump($stmt->errorInfo());
+           var_dump($stmt->errorInfo());
             return false;
         } else {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
